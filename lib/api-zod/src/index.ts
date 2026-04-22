@@ -1,2 +1,13 @@
 export * from "./generated/api";
-export * from "./generated/types";
+export type {
+  AuthResponse,
+  Cadence,
+  Client,
+  ClientInput,
+  ClientWithNext,
+  ErrorResponse,
+  FollowUpWithClient,
+  HealthStatus,
+  OkResponse,
+  User,
+} from "./generated/types";

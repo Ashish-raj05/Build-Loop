@@ -1,0 +1,223 @@
+Build "Loop" — A Follow-Up SaaS Web App
+Project Overview
+Build a clean, minimal SaaS web application called Loop. Loop is an after-job follow-up tool for solo operators and small businesses. It helps users remember when to follow up with clients, with support for one-time and recurring follow-ups. The product philosophy is: calm, clear, boring-in-the-best-way utility.
+
+Tech Stack
+
+Frontend: React (Vite) with TailwindCSS
+Backend: Node.js + Express (REST API)
+Database: PostgreSQL with Prisma ORM
+Auth: JWT-based email/password authentication with bcrypt password hashing
+Hosting-ready: Environment variables via .env, CORS configured
+
+
+Layer 1 — Authentication & Security
+Sign Up
+
+Fields: Full Name, Email, Password, Confirm Password
+Password rules (enforce all):
+
+Minimum 8 characters
+At least 1 uppercase letter
+At least 1 number
+At least 1 special character
+
+
+Show inline real-time validation feedback per rule (tick/cross per rule)
+On success: auto-login and redirect to Home
+If email already exists: show "An account with this email already exists"
+
+Login
+
+Fields: Email, Password
+"Forgot password?" link (placeholder UI only, no backend needed)
+On invalid credentials: show "Incorrect email or password"
+JWT stored in httpOnly cookie or localStorage (prefer httpOnly)
+Protected routes: redirect unauthenticated users to /login
+
+Single User Type
+
+No roles, no admin panel — every authenticated user is the same type
+
+
+Layer 2 — Database Schema
+Table: users
+
+id (UUID, PK)
+full_name (VARCHAR)
+email (VARCHAR, unique)
+password_hash (VARCHAR)
+created_at (TIMESTAMP)
+
+Table: clients
+
+id (UUID, PK)
+name (VARCHAR, required)
+notes (TEXT, optional) — context/background about the client
+cadence (ENUM: 'one_time', 'weekly', 'monthly', 'quarterly')
+follow_up_date (DATE, nullable) — required only when cadence = 'one_time'
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)
+
+Table: follow_ups
+
+id (UUID, PK)
+client_id (UUID, FK → clients.id)
+scheduled_date (DATE) — the date this follow-up appears on home screen
+completed (BOOLEAN, default false)
+completed_at (TIMESTAMP, nullable)
+next_follow_up_date (DATE, nullable) — computed and stored after marking complete
+notes_snapshot (TEXT) — copy of client notes at time of follow-up creation
+created_at (TIMESTAMP)
+
+Follow-Up Generation Logic (backend)
+
+When a client is saved with cadence = 'one_time': create 1 follow_up record with scheduled_date = follow_up_date
+When cadence = 'weekly': generate follow_up records weekly from today (generate next 12 weeks rolling)
+When cadence = 'monthly': generate follow_up records monthly from today (generate next 12 months rolling)
+When cadence = 'quarterly': generate follow_up records quarterly from today (generate next 8 quarters rolling)
+A daily cron job (or on-login trigger) should generate new future follow_ups as older ones get completed, keeping the rolling window fresh
+
+
+Layer 3 — Pages & Features
+Page 1: Home Screen (/home) [Default after login]
+Purpose: Show only today's pending follow-ups. Nothing else.
+Header: App name "Loop" (top left, subtle), logged-in user's first name greeting "Good morning, {name}" (or afternoon/evening based on time), Logout link (top right, small text)
+Main Content:
+
+Page title: "Today's Follow-ups" in soft, medium weight heading
+If no follow-ups today: show a calm empty state — "You're all caught up for today." (no illustration needed, just centered text)
+List of follow-up cards for today only (scheduled_date = today AND completed = false)
+
+Each Follow-Up Card contains:
+
+Client name (bold, readable)
+Notes / context (small muted text, truncated to 2 lines with ellipsis if long)
+Due date displayed as "Today" or formatted date (e.g., "Apr 21")
+Primary action button: "Followed Up" (soft green, full-width or right-aligned)
+
+"Followed Up" Button Behavior:
+
+On click: do NOT navigate away, do NOT reload page
+Mark follow_up as completed in DB (PATCH /follow-ups/:id/complete)
+Show inline confirmation text below/replacing the button:
+"Follow-up logged. Next f/up: {Month Day}" (e.g., "Follow-up logged. Next f/up: May 21")
+The card fades slightly (opacity 0.5) and becomes non-interactive
+For one_time cadence: next f/up message = "No further follow-ups scheduled"
+For recurring: calculate and display next occurrence date
+
+Navigation: Simple top nav or sidebar with 2 links only — "Today" (home) and "Clients"
+
+Page 2: Clients (/clients)
+Purpose: View and manage all clients.
+Header: Page title "Clients" + "Add Client" button (top right, soft green, rounded)
+Client List:
+
+Display as a clean vertical list (not a grid/card grid)
+Each row shows: Client name, cadence badge (e.g., "Weekly", "Monthly", "One-time"), next follow-up date
+Click on a client row to open edit mode (inline expansion or a simple edit page)
+
+Add Client Flow:
+
+Clicking "Add Client" shows a form (inline at top of list or a clean modal)
+Form Fields:
+
+Client Name* (text input)
+Notes (textarea, optional) — "Context about this client or previous discussions"
+Follow-up Cadence* (segmented control or select): One-time | Weekly | Monthly | Quarterly
+Follow-up Date (date picker) — shown ONLY when "One-time" is selected; hidden otherwise
+
+
+Primary button: "Save" (soft green)
+Cancel link (small, no button border)
+On save: create client + generate follow_ups records, return to client list
+
+Edit Client:
+
+Same form pre-filled with existing data
+Save updates client + regenerates follow_up records (delete future uncompleted ones, regenerate)
+"Delete Client" option (small red text link, confirm before deleting — "Delete {name} and all follow-ups?")
+
+
+Layer 4 — UI & Design System
+Visual Philosophy
+"Boring in the best way" — calm, minimal, professional. No dashboards, no charts, no notifications, no complexity. Every screen should have one obvious primary action.
+Color Palette
+
+Primary background: #FFFFFF (white)
+Page background: #F9FAF7 (off-white with green tint)
+Primary accent: #4A7C59 (soft muted green) — used for primary buttons, active nav
+Accent hover: #3A6347
+Muted text: #6B7280 (gray-500)
+Body text: #1F2937 (gray-800)
+Borders: #E5E7EB (gray-200, hairline)
+Success/confirmation: #D1FAE5 background, #065F46 text (green tones)
+Danger: #FEE2E2 background, #991B1B text
+
+Typography
+
+Font: Inter (Google Fonts)
+Headings: font-weight 500, not bold
+Body: 14–15px, line-height 1.6
+Small/muted: 13px, color muted gray
+
+Component Rules
+
+Buttons: rounded-full or rounded-lg, no heavy shadows, solid soft-green for primary, outlined for secondary
+Inputs: rounded-lg, light border, subtle focus ring in green
+Cards (follow-up items): very light border (1px #E5E7EB), white bg, rounded-xl, padding 16px, NO shadow or very subtle (shadow-sm max)
+No cards-within-cards
+Lots of whitespace — generous padding (24–32px sections)
+Nav: simple, text-based, no icons required (icons optional, keep them small and line-style)
+No modals that feel heavy — prefer inline forms or simple slide-in panels
+
+Spacing
+
+Section padding: 32px top/bottom
+Card padding: 16px
+Element gaps: 12–16px
+Max content width: 680px centered (not full-width)
+
+
+Layer 5 — API Endpoints
+Auth
+
+POST /api/auth/signup — create user, return JWT
+POST /api/auth/login — verify credentials, return JWT
+POST /api/auth/logout — clear token
+
+Clients
+
+GET /api/clients — list all clients
+POST /api/clients — create client + generate follow_ups
+PUT /api/clients/:id — update client + regenerate future follow_ups
+DELETE /api/clients/:id — delete client + all associated follow_ups
+
+Follow-Ups
+
+GET /api/follow-ups/today — return follow_ups where scheduled_date = today AND completed = false
+PATCH /api/follow-ups/:id/complete — mark as done, compute next_follow_up_date, return it in response
+
+
+Layer 6 — UX Flows
+First-Time User Flow
+
+Land on /signup
+Create account → redirect to /home
+Empty state: "You're all caught up for today." with a subtle prompt "Add your first client →" linking to /clients
+User adds a client with cadence → follow-ups are generated
+Next day (or on the scheduled date) the follow-up appears on home screen
+User clicks "Followed Up" → sees inline confirmation with next date
+
+Recurring Follow-Up Completion Flow
+
+User sees client card on home screen
+Clicks "Followed Up"
+Card shows: "Follow-up logged. Next f/up: May 21"
+Card becomes muted/disabled (stays visible until page refresh or fades out after 2s)
+On next scheduled date, a new follow_up record appears for that client
+
+One-Time Follow-Up Completion Flow
+
+Same as above but confirmation reads: "Follow-up logged. No further follow-ups scheduled."
+Client remains in /clients list but no new follow_up is generated

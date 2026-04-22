@@ -1,27 +1,30 @@
-# Workspace
+# Loop
 
-## Overview
+Calm, minimal client follow-up tracker.
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+## Architecture
+- **artifacts/loop** — React + Vite + Tailwind v4, wouter routing, TanStack Query.
+- **artifacts/api-server** — Express + TypeScript (port 8080).
+- **lib/db** — Drizzle ORM + Postgres. Tables: `users`, `clients`, `follow_ups`. Cadence enum: `one_time | weekly | monthly | quarterly`.
+- **lib/api-spec** — OpenAPI 3.1; codegen produces `lib/api-zod` and `lib/api-client-react`.
 
-## Stack
+## Auth
+- JWT (HS256) signed with `SESSION_SECRET`, stored in httpOnly cookie `loop_token` (7-day expiry).
+- bcryptjs password hashing.
+- `requireAuth` middleware sets `req.userId`; routes read it via `getUserId(req)`.
+- Frontend uses `credentials: "include"` (set in `lib/api-client-react/src/custom-fetch.ts`).
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+## Endpoints
+- `POST /api/auth/signup` `{fullName,email,password}` → User + sets cookie
+- `POST /api/auth/login` `{email,password}` → User + sets cookie
+- `POST /api/auth/logout` → clears cookie
+- `GET /api/auth/me` → User
+- `GET/POST/PUT/DELETE /api/clients[/:id]`
+- `GET /api/follow-ups/today`
+- `PATCH /api/follow-ups/:id/complete` → marks done; auto-schedules next occurrence based on cadence
 
-## Key Commands
+## Follow-up generation
+`lib/followUps.ts` generates a rolling window of pending occurrences per client based on cadence. On completion, the next occurrence is scheduled and the window topped up.
 
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
-
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+## Design tokens
+Off-white background `#F9FAF7`, soft green primary `#4A7C59`, max-width 680px, Inter font.
