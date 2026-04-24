@@ -48,16 +48,33 @@ app.use("/api", router);
 
 app.use(
   (err: Error & { cause?: unknown }, req: Request, res: Response, _next: NextFunction) => {
-    logger.error(
-      {
-        method: req.method,
-        url: req.url,
-        message: err.message,
-        stack: err.stack,
-        cause: err.cause,
-      },
-      "unhandled route error",
-    );
+    const errorDetails: Record<string, unknown> = {
+      method: req.method,
+      url: req.url,
+      name: err.name,
+      message: err.message,
+      stack: err.stack,
+    };
+    for (const key of Object.getOwnPropertyNames(err)) {
+      if (!(key in errorDetails)) {
+        errorDetails[key] = (err as unknown as Record<string, unknown>)[key];
+      }
+    }
+    if (err.cause) {
+      const cause = err.cause as Error & Record<string, unknown>;
+      const causeDetails: Record<string, unknown> = {
+        name: cause.name,
+        message: cause.message,
+        stack: cause.stack,
+      };
+      for (const key of Object.getOwnPropertyNames(cause)) {
+        if (!(key in causeDetails)) {
+          causeDetails[key] = cause[key];
+        }
+      }
+      errorDetails["cause"] = causeDetails;
+    }
+    logger.error(errorDetails, "unhandled route error");
     if (!res.headersSent) {
       res.status(500).json({ message: "Internal server error" });
     }
