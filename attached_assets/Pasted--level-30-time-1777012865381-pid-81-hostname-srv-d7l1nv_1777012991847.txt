@@ -1,0 +1,15 @@
+{"level":30,"time":1777012865381,"pid":81,"hostname":"srv-d7l1nvhj2pic73chqhvg-hibernate-7fd694db79-qzpf6","req":{"id":7,"method":"OPTIONS","url":"/api/auth/signup"},"res":{"statusCode":204},"responseTime":0,"msg":"request completed"}
+(node:81) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"level":30,"time":1777012865671,"pid":81,"hostname":"srv-d7l1nvhj2pic73chqhvg-hibernate-7fd694db79-qzpf6","req":{"id":8,"method":"POST","url":"/api/auth/signup"},"res":{"statusCode":500},"err":{"type":"Error","message":"failed with status code 500","stack":"Error: failed with status code 500\n    at onResFinished (/opt/render/project/src/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:115:39)\n    at ServerResponse.onResponseComplete (/opt/render/project/src/node_modules/.pnpm/pino-http@10.5.0/node_modules/pino-http/logger.js:178:14)\n    at ServerResponse.emit (node:events:520:35)\n    at onFinish (node:_http_outgoing:1026:10)\n    at callback (node:internal/streams/writable:764:21)\n    at afterWrite (node:internal/streams/writable:708:5)\n    at afterWriteTick (node:internal/streams/writable:694:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)\n    at runNextTicks (node:internal/process/task_queues:69:3)\n    at process.processImmediate (node:internal/timers:472:9)"},"responseTime":133,"msg":"request errored"}
+Error: Failed query: select "id" from "users" where "users"."email" = $1 limit $2
+params: ashishraj93865@gmail.com,1
+    at NodePgPreparedQuery.queryWithCache (/opt/render/project/src/node_modules/.pnpm/drizzle-orm@0.45.2_@types+pg@8.18.0_pg@8.20.0/node_modules/src/pg-core/session.ts:73:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (/opt/render/project/src/node_modules/.pnpm/drizzle-orm@0.45.2_@types+pg@8.18.0_pg@8.20.0/node_modules/src/node-postgres/session.ts:154:19)
+    at async <anonymous> (/opt/render/project/src/artifacts/api-server/src/routes/auth.ts:26:20)
