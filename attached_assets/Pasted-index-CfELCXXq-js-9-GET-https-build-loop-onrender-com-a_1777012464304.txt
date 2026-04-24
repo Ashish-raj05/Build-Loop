@@ -1,0 +1,235 @@
+index-CfELCXXq.js:9  GET https://build-loop.onrender.com/api/auth/me 401 (Unauthorized)
+xn @ index-CfELCXXq.js:9
+aC @ index-CfELCXXq.js:9
+queryFn @ index-CfELCXXq.js:9
+l @ index-CfELCXXq.js:9
+E @ index-CfELCXXq.js:9
+start @ index-CfELCXXq.js:9
+fetch @ index-CfELCXXq.js:9
+#f @ index-CfELCXXq.js:9
+onSubscribe @ index-CfELCXXq.js:9
+subscribe @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+bp @ index-CfELCXXq.js:8
+Fa @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+ig @ index-CfELCXXq.js:8
+Bo @ index-CfELCXXq.js:8
+ug @ index-CfELCXXq.js:8
+Ia @ index-CfELCXXq.js:8
+eg @ index-CfELCXXq.js:8
+Iy @ index-CfELCXXq.js:8
+Fy @ index-CfELCXXq.js:8
+Gy @ index-CfELCXXq.js:8
+lg @ index-CfELCXXq.js:8
+pt @ index-CfELCXXq.js:1
+postMessage
+ut @ index-CfELCXXq.js:1
+YE.t.unstable_scheduleCallback @ index-CfELCXXq.js:1
+og @ index-CfELCXXq.js:8
+rg @ index-CfELCXXq.js:8
+(anonymous) @ index-CfELCXXq.js:8Understand this error
+index-CfELCXXq.js:9  GET https://build-loop.onrender.com/api/auth/me 401 (Unauthorized)
+xn @ index-CfELCXXq.js:9
+aC @ index-CfELCXXq.js:9
+queryFn @ index-CfELCXXq.js:9
+l @ index-CfELCXXq.js:9
+E @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+Promise.then
+(anonymous) @ index-CfELCXXq.js:9
+Promise.catch
+E @ index-CfELCXXq.js:9
+start @ index-CfELCXXq.js:9
+fetch @ index-CfELCXXq.js:9
+#f @ index-CfELCXXq.js:9
+onSubscribe @ index-CfELCXXq.js:9
+subscribe @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+bp @ index-CfELCXXq.js:8
+Fa @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+ig @ index-CfELCXXq.js:8
+Bo @ index-CfELCXXq.js:8
+ug @ index-CfELCXXq.js:8
+Ia @ index-CfELCXXq.js:8
+eg @ index-CfELCXXq.js:8
+Iy @ index-CfELCXXq.js:8
+Fy @ index-CfELCXXq.js:8
+Gy @ index-CfELCXXq.js:8
+lg @ index-CfELCXXq.js:8
+pt @ index-CfELCXXq.js:1
+postMessage
+ut @ index-CfELCXXq.js:1
+YE.t.unstable_scheduleCallback @ index-CfELCXXq.js:1
+og @ index-CfELCXXq.js:8
+rg @ index-CfELCXXq.js:8
+(anonymous) @ index-CfELCXXq.js:8Understand this error
+index-CfELCXXq.js:9  GET https://build-loop.onrender.com/api/auth/me 401 (Unauthorized)
+xn @ index-CfELCXXq.js:9
+aC @ index-CfELCXXq.js:9
+queryFn @ index-CfELCXXq.js:9
+l @ index-CfELCXXq.js:9
+E @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+Promise.then
+(anonymous) @ index-CfELCXXq.js:9
+Promise.catch
+E @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+Promise.then
+(anonymous) @ index-CfELCXXq.js:9
+Promise.catch
+E @ index-CfELCXXq.js:9
+start @ index-CfELCXXq.js:9
+fetch @ index-CfELCXXq.js:9
+#f @ index-CfELCXXq.js:9
+onSubscribe @ index-CfELCXXq.js:9
+subscribe @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+bp @ index-CfELCXXq.js:8
+Fa @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+ig @ index-CfELCXXq.js:8
+Bo @ index-CfELCXXq.js:8
+ug @ index-CfELCXXq.js:8
+Ia @ index-CfELCXXq.js:8
+eg @ index-CfELCXXq.js:8
+Iy @ index-CfELCXXq.js:8
+Fy @ index-CfELCXXq.js:8
+Gy @ index-CfELCXXq.js:8
+lg @ index-CfELCXXq.js:8
+pt @ index-CfELCXXq.js:1
+postMessage
+ut @ index-CfELCXXq.js:1
+YE.t.unstable_scheduleCallback @ index-CfELCXXq.js:1
+og @ index-CfELCXXq.js:8
+rg @ index-CfELCXXq.js:8
+(anonymous) @ index-CfELCXXq.js:8Understand this error
+index-CfELCXXq.js:9  GET https://build-loop.onrender.com/api/auth/me 401 (Unauthorized)
+xn @ index-CfELCXXq.js:9
+aC @ index-CfELCXXq.js:9
+queryFn @ index-CfELCXXq.js:9
+l @ index-CfELCXXq.js:9
+E @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+Promise.then
+(anonymous) @ index-CfELCXXq.js:9
+Promise.catch
+E @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+Promise.then
+(anonymous) @ index-CfELCXXq.js:9
+Promise.catch
+E @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+Promise.then
+(anonymous) @ index-CfELCXXq.js:9
+Promise.catch
+E @ index-CfELCXXq.js:9
+start @ index-CfELCXXq.js:9
+fetch @ index-CfELCXXq.js:9
+#f @ index-CfELCXXq.js:9
+onSubscribe @ index-CfELCXXq.js:9
+subscribe @ index-CfELCXXq.js:9
+(anonymous) @ index-CfELCXXq.js:9
+bp @ index-CfELCXXq.js:8
+Fa @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+hn @ index-CfELCXXq.js:8
+zy @ index-CfELCXXq.js:8
+ig @ index-CfELCXXq.js:8
+Bo @ index-CfELCXXq.js:8
+ug @ index-CfELCXXq.js:8
+Ia @ index-CfELCXXq.js:8
+eg @ index-CfELCXXq.js:8
+Iy @ index-CfELCXXq.js:8
+Fy @ index-CfELCXXq.js:8
+Gy @ index-CfELCXXq.js:8
+lg @ index-CfELCXXq.js:8
+pt @ index-CfELCXXq.js:1
+postMessage
+ut @ index-CfELCXXq.js:1
+YE.t.unstable_scheduleCallback @ index-CfELCXXq.js:1
+og @ index-CfELCXXq.js:8
+rg @ index-CfELCXXq.js:8
+(anonymous) @ index-CfELCXXq.js:8Understand this error
+index-CfELCXXq.js:9  POST https://build-loop.onrender.com/api/auth/signup 500 (Internal Server Error)
