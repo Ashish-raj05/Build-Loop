@@ -26,7 +26,15 @@ app.use(
     },
   }),
 );
-app.use(cors({ origin: true, credentials: true }));
+const corsOrigin = process.env["CORS_ORIGIN"];
+app.use(
+  cors({
+    origin: corsOrigin
+      ? corsOrigin.split(",").map((o) => o.trim())
+      : true,
+    credentials: true,
+  }),
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -26,18 +26,24 @@ export function verifyToken(token: string): AuthPayload | null {
   }
 }
 
+const isProd = process.env["NODE_ENV"] === "production";
+
 export function setAuthCookie(res: Response, token: string): void {
   res.cookie(TOKEN_NAME, token, {
     httpOnly: true,
-    sameSite: "lax",
-    secure: process.env["NODE_ENV"] === "production",
+    sameSite: isProd ? "none" : "lax",
+    secure: isProd,
     maxAge: ONE_WEEK_MS,
     path: "/",
   });
 }
 
 export function clearAuthCookie(res: Response): void {
-  res.clearCookie(TOKEN_NAME, { path: "/" });
+  res.clearCookie(TOKEN_NAME, {
+    path: "/",
+    sameSite: isProd ? "none" : "lax",
+    secure: isProd,
+  });
 }
 
 export function readAuthCookie(req: Request): string | null {
